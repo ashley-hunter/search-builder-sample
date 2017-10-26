@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-8">
+
+            <search-builder search-query="vm.query" components="vm.components" ng-if="vm.searchVisible === true">
+
+                <search-group group-id="'keywords'" group-title="'Keywords'" operator="'and'" button-text="'Add keywords'" add-field="vm.addKeywordField"></search-group>
+                
+                <search-group group-id="'repositories'" group-title="'Repositories'" operator="'and'" button-text="'Add repositories'" add-field="vm.addRepositoryField"></search-group>
+
+            </search-builder>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <facet-container select-title="Selected:" clear-text="Clear All" no-items-text="None selected" clear-all-fn="vm.clearAll()">
+
+                <facet name="'Keywords'">
+                    <facet-option ng-repeat="keyword in vm.keywords" name="keyword.name" select="vm.addKeyword(keyword)" deselect="vm.removeKeyword(keyword)"></facet-option>
+                </facet>
+
+                <facet name="'Repositories'">
+                    <facet-option ng-repeat="repository in vm.repositories" name="repository.name" select="vm.addRepository(repository)" deselect="vm.removeRepository(repository)"></facet-option>
+                </facet>
+
+            </facet-container>
+
+        </div>
+
+    </div>
+</div>
